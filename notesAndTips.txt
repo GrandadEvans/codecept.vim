@@ -1,0 +1,40 @@
+use normal! instead of normal to make sure that your plugins mapping work instead of the users 
+show users to set their own mapping within the readme
+nnoremap <F9> :codeceptRunUnit<CR>
+
+use the noremap way of mapping keys so that the user's preferred shortcuts are ignored
+
+Allow the user to turn off your mappings
+
+if !exists('g:yourplugin_map_keys')
+    let g:yourplugin_map_keys = 1
+endif
+
+if g:yourplugin_map_keys
+    nnoremap <leader>d :call <sid>YourPluginDelete()<CR>
+endif
+
+Use local buffer only option when needed
+" Remaps <leader>z only in the current buffer
+nnoremap <buffer> <leader>z :YourPluginFoo<cr>
+
+Use them for php files only
+if g:yourplugin_map_keys
+    execute "autocommand FileType php" "nnoremap <buffer>" g:yourplugin_map_prefix."d"  ":call <sid>YourPluginDelete()<CR>"
+endif
+
+Use setlocal instead of set if only needed for the local buffer
+
+Use autoloading so that the function is not loaded until it is needed. This means that the functions etc will have to go in ./autoload/scriptName.vim and the rest (eg key bindings) stays in the ./plugin/scriptName.vim
+
+
+
+How to run
+search pwd for codeception.yml
+search recursive
+
+Run the unit tests each time the file is saved
+Run the acceptance, functional and any other tests when they are called manually
+Run the tests for the current buffer when it or the test is saved, that includes all of the tests
+
+How am I going to write this script? I suggest in bash or php
