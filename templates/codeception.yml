@@ -12,8 +12,8 @@ coverage:
 modules:
     config:
         Db:
-            dsn: 'mysql:host=127.0.0.1;port=3306;dbname=dbName'
-            user: dbName
-            password: password
+            dsn: 'mysql:host={host};port={port};dbname={name}'
+            user: {name}
+            password: {password}
             dump: tests/_data/dump.sql
 
